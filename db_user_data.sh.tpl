@@ -26,4 +26,6 @@ sed -i 's/^#*\s*'"$bind_address_line"'\s*=.*/'"$bind_address_line = 0.0.0.0"'/g'
 service mysql restart
 
 mysql -u root -p$DB_ROOT_PASS -e "CREATE USER 'phpmyadmin'@'$phpmyadmin_server_ip' IDENTIFIED BY '$DB_ROOT_PASS';"
+mysql -u root -p$DB_ROOT_PASS -e "CREATE USER 'phpmyadmin'@'$replication_server_ip' IDENTIFIED BY '$DB_ROOT_PASS';"
 mysql -u root -p$DB_ROOT_PASS -e "GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'phpmyadmin'@'$phpmyadmin_server_ip' WITH GRANT OPTION; FLUSH PRIVILEGES;"
+mysql -u root -p$DB_ROOT_PASS -e "GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'phpmyadmin'@'$replication_server_ip' WITH GRANT OPTION; FLUSH PRIVILEGES;"

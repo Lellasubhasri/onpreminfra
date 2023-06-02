@@ -1,7 +1,8 @@
 resource "aws_instance" "app_server" {
   
   #ami           = var.ami_for_app
-  ami = "ami-0136ddddd07f0584f"
+  #ami = "ami-0261755bbcb8c4a84"
+  ami = "ami-0ab1a82de7ca5889c"
   instance_type = "t2.micro"
   #vpc_security_group_ids = [aws_security_group.appserver.id]
   key_name = "talent-academy-lab"
@@ -32,9 +33,10 @@ resource "aws_network_interface" "interface" {
 
 resource "aws_instance" "data_server" {
   #ami           = var.ami_for_app
-  ami = "ami-0136ddddd07f0584f"
+  #ami = "ami-0261755bbcb8c4a84"
+  ami = "ami-0ab1a82de7ca5889c"
   instance_type = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.dbserver.id]
+  vpc_security_group_ids = [aws_security_group.appserver.id]
   key_name = "talent-academy-lab"
   subnet_id = module.vpc.private_subnets[0]
   #user_data = "${file(db_user_data.sh.tpl)}"
